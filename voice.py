@@ -4,7 +4,6 @@ import webbrowser
 import datetime
 import pyjokes
 
-
 def sptext():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
@@ -30,12 +29,29 @@ def speech(x):
 
  
 
-if __name__ == '__main__':  
-   # if sptext().lower() == "hey mana":
+if __name__ == '__main__': 
+    
+   print("say 'hey mana' to start")
+   while True:
+     command = sptext().lower()
+     if "hey mana" in command:
+        print("how can I help you...")
         data1=sptext().lower()
         if "your name" in data1:
             name = "my name is mana"
             speech(name)
+
+        elif "open" in data1:
+            from dictapp import openapp
+            query = data1.replace("open", "").strip()
+            openapp(query)
+
+        elif "close" in data1:
+            from dictapp import close
+            query = data1.replace("close", "").strip()
+            close(query)    
+
+
         elif "old are you" in data1:
              age  = " i am 2 year old"
              speech(age)
@@ -49,6 +65,10 @@ if __name__ == '__main__':
 
         elif "google" in data1:
              webbrowser.open("https://www.google.co.uk/") 
+    
+        elif "translate" in data1:
+            pass
+        
 
 
              
